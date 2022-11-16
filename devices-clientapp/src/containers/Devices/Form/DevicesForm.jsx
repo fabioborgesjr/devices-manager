@@ -149,7 +149,7 @@ const DevicesForm = ({ showSuccessSnackbar }) => {
   const { devices, isLoading } = useDevices(id)
   const defaultForm = devices.length === 1 ? devices[0] : null
 
-  return isLoading ? null : (
+  return isLoading || !defaultForm ? null : (
     <FormComponent defaultForm={defaultForm} showSuccessSnackbar={showSuccessSnackbar} />
   )
 }

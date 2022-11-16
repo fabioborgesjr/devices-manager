@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import apiClient from '../services/axios-instance'
 
@@ -35,6 +35,12 @@ export const useDevices = (id) => {
     },
     [refetch, devices],
   )
+
+  useEffect(() => {
+    if (id) {
+      refetch()
+    }
+  }, [])
 
   return {
     isLoading,

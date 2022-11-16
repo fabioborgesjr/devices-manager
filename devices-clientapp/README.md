@@ -1,4 +1,6 @@
-# Description
+# Frontend Documentation
+
+## Description
 
 Client web application to list, create, update and delete devices, being able to filter and sort according to one or more device data fields
 
@@ -36,39 +38,94 @@ Client web application to list, create, update and delete devices, being able to
 
 In the project directory, you can run:
 
-### `yarn start`
+
+### Installation
+
+```bash
+yarn
+```
+
+Install all the project dependencies
+
+
+### Running envinroment
+
+```bash
+yarn start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `yarn test`
+
+### Running tests 
+
+```bash
+yarn test
+```
 
 I created 25 tests of the essencial features
 
-### `yarn lint`
+
+### Lint checking
+
+```bash
+yarn lint
+```
 
 Check code quality according to ESLint config
 
-### `yarn lint:fix`
+
+### Lint checking and autofixing
+
+```bash
+yarn lint:fix
+```
 
 Check code quality according to ESLint config and fix issues
 
-### `yarn format`
+
+### Format files with Prettier
+
+```bash
+yarn format
+```
 
 Format project fields according to Prettier config
 
-### `yarn storybook`
+
+### Running Storybook
+
+```bash
+storybook
+```
 
 Launches storybook enviroment
 
-### `yarn build-storybook`
+
+### Setting up Storybook
+
+```bash
+yarn build-storybook
+```
 
 Build storybook local enviroment
 
-### `yarn build`
+
+### Building Project for Production
+
+```bash
+yarn build
+```
 
 Builds the app for production to the `build` folder.
 
-### `yarn eject`
+
+### Removing Build files
+
+```bash
+yarn eject
+```
+
 
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.

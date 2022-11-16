@@ -8,7 +8,7 @@ export const useUpdateDevice = (snackbarCallback) => {
   const navigate = useNavigate()
   const mutation = useMutation(updateDevice, {
     onSuccess: () => {
-      snackbarCallback()
+      snackbarCallback('The device was updated successfully!')
       navigate('/')
     },
   })

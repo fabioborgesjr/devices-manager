@@ -10,6 +10,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 const useSnackbar = ({ severity, text }) => {
   const [open, setOpen] = useState(false)
+  const [renderText, setRenderText] = useState(text)
 
   const handleClose = useCallback((event, reason) => {
     if (reason === 'clickaway') {
@@ -19,7 +20,8 @@ const useSnackbar = ({ severity, text }) => {
     setOpen(false)
   }, [])
 
-  const showSnackbar = useCallback(() => {
+  const showSnackbar = useCallback((text) => {
+    setRenderText(text)
     setOpen(true)
   }, [])
 
@@ -33,7 +35,7 @@ const useSnackbar = ({ severity, text }) => {
           onClose={handleClose}
         >
           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%', color: '#fff' }}>
-            {text}
+            {renderText}
           </Alert>
         </Snackbar>
       </Stack>

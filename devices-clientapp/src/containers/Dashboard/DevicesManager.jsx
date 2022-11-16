@@ -12,19 +12,9 @@ const DevicesManager = () => {
   const location = useLocation()
   const path = useMemo(() => location?.pathname || '', [location])
 
-  const [renderCreatedSnackbar, showCreatedSnackbar] = useSnackbar({
+  const [renderSuccessSnackbar, showSuccessSnackbar] = useSnackbar({
     severity: 'success',
     text: 'The device was created successfully!',
-  })
-
-  const [renderUpdatedSnackbar, showUpdatedSnackbar] = useSnackbar({
-    severity: 'success',
-    text: 'The device was updated successfully!',
-  })
-
-  const [renderDeletedSnackbar, showDeletedSnackbar] = useSnackbar({
-    severity: 'success',
-    text: 'The device was deleted successfully!',
   })
 
   return (
@@ -43,18 +33,16 @@ const DevicesManager = () => {
       </Box>
       <Paper variant='outlined' sx={{ mb: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
         <Routes>
-          <Route index element={<DevicesList showDeletedSnackbar={showDeletedSnackbar} />} />
-          <Route path='/add' element={<DevicesForm showSuccessSnackbar={showCreatedSnackbar} />} />
+          <Route index element={<DevicesList showSuccessSnackbar={showSuccessSnackbar} />} />
+          <Route path='/add' element={<DevicesForm showSuccessSnackbar={showSuccessSnackbar} />} />
           <Route
             path='/edit/:id'
-            element={<DevicesForm showSuccessSnackbar={showUpdatedSnackbar} />}
+            element={<DevicesForm showSuccessSnackbar={showSuccessSnackbar} />}
           />
           <Route path='*' element={<Navigate replace to='/' />} />
         </Routes>
       </Paper>
-      {renderCreatedSnackbar()}
-      {renderUpdatedSnackbar()}
-      {renderDeletedSnackbar()}
+      {renderSuccessSnackbar()}
     </Container>
   )
 }

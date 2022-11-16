@@ -161,16 +161,23 @@ EnhancedTableHead.propTypes = {
   isLoading: PropTypes.bool,
 }
 
-function HeaderActions({ selected, refetch, showDeletedSnackbar, isLoading }) {
-  const { mutation } = useDeleteDevice()
+function HeaderActions({ selected, refetch, showSuccessSnackbar, isLoading }) {
+  const { mutation } = useDeleteDevice(showSuccessSnackbar)
   const selectedLength = selected.length
 
   const handleDevicesDelete = useCallback(() => {
     Promise.all(selected.map((device) => mutation.mutate(device))).then(() => {
       refetch(selected)
-      showDeletedSnackbar && showDeletedSnackbar()
+
+      if (showSuccessSnackbar) {
+        showSuccessSnackbar(
+          selected.length > 1
+            ? 'The devices were deleted successfully!'
+            : 'The device was deleted successfully!',
+        )
+      }
     })
-  }, [selected, refetch, showDeletedSnackbar])
+  }, [selected, refetch, showSuccessSnackbar])
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -233,7 +240,7 @@ HeaderActions.propTypes = {
 HeaderActions.propTypes = {
   selected: PropTypes.arrayOf(PropTypes.string).isRequired,
   refetch: PropTypes.func.isRequired,
-  showDeletedSnackbar: PropTypes.func,
+  showSuccessSnackbar: PropTypes.func,
   isLoading: PropTypes.bool,
 }
 
@@ -270,7 +277,7 @@ EnhancedTableToolbar.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-function EnhancedTable({ data, headCells, deviceSort, refetch, showDeletedSnackbar, isLoading }) {
+function EnhancedTable({ data, headCells, deviceSort, refetch, showSuccessSnackbar, isLoading }) {
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState(deviceSort)
   const [selected, setSelected] = useState([])
@@ -336,8 +343,8 @@ function EnhancedTable({ data, headCells, deviceSort, refetch, showDeletedSnackb
   useEffect(() => {
     if (selected.length) {
       setSelected([])
-    } 
-    
+    }
+
     if (page !== 0) {
       setPage(0)
     }
@@ -352,7 +359,7 @@ function EnhancedTable({ data, headCells, deviceSort, refetch, showDeletedSnackb
           <HeaderActions
             selected={selected}
             refetch={refetch}
-            showDeletedSnackbar={showDeletedSnackbar}
+            showSuccessSnackbar={showSuccessSnackbar}
             isLoading={isLoading}
           />
         </EnhancedTableToolbar>
@@ -455,7 +462,7 @@ EnhancedTable.propTypes = {
   ),
   deviceSort: PropTypes.string,
   refetch: PropTypes.func.isRequired,
-  showDeletedSnackbar: PropTypes.func,
+  showSuccessSnackbar: PropTypes.func,
   isLoading: PropTypes.bool,
 }
 

@@ -8,7 +8,7 @@ export const useCreateDevice = (snackbarCallback) => {
   const navigate = useNavigate()
   const mutation = useMutation(postDevice, {
     onSuccess: () => {
-      snackbarCallback()
+      snackbarCallback('The device was created successfully!')
       navigate('/')
     },
   })

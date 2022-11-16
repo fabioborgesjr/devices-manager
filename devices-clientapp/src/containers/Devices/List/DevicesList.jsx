@@ -41,7 +41,7 @@ const headCells = [
   },
 ]
 
-const DevicesList = ({ showDeletedSnackbar }) => {
+const DevicesList = ({ showSuccessSnackbar }) => {
   const { devices, isLoading, refetch, isRefetching, isFetching } = useDevices()
   const location = useLocation()
   const [deviceFilter, setDeviceFilter] = useState([deviceOptionsWithAll[0].value])
@@ -111,7 +111,7 @@ const DevicesList = ({ showDeletedSnackbar }) => {
           headCells={headCells}
           deviceSort={deviceSort}
           refetch={refetch}
-          showDeletedSnackbar={showDeletedSnackbar}
+          showSuccessSnackbar={showSuccessSnackbar}
           isLoading={Boolean(isLoading || isRefetching || isFetching)}
         />
       </Box>
@@ -120,7 +120,7 @@ const DevicesList = ({ showDeletedSnackbar }) => {
 }
 
 DevicesList.propTypes = {
-  showDeletedSnackbar: PropTypes.func,
+  showSuccessSnackbar: PropTypes.func,
 }
 
 export default DevicesList
